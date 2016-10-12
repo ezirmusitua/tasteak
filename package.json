@@ -1,0 +1,19 @@
+{
+  "name": "mongo-json-generator",
+  "version": "1.0.0",
+  "description": "generate random json file accord to mongoose schema",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongodb",
+    "json"
+  ],
+  "author": "jferroal@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "mockgoose": "^6.0.8",
+    "mongoose": "^4.6.3"
+  }
+}
