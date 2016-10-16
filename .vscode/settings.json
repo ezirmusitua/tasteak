@@ -721,29 +721,25 @@
     "filterJSON.includeKeys": [],
 
 
-// TSLint configuration
+// ESLint configuration
 
-    // Control whether tslint is enabled for TypeScript files or not.
-    "tslint.enable": true,
+    // Controls whether eslint is enabled for JavaScript files or not.
+    "eslint.enable": true,
 
-    // An additional rules directory
-    "tslint.rulesDirectory": "",
+    "eslint.autoFixOnSave": true,
 
-    // Validate a file when there is only a default tslint configuration is found
-    "tslint.validateWithDefaultConfig": false,
+    // A path added to NODE_PATH when resolving the eslint module.
+    "eslint.nodePath": "C:/Program Files/nodejs/node.exe",
 
-    // The path to the rules configuration file
-    "tslint.configFile": "./tslint.json",
+    // Uses the legacy module resolving.
+    "eslint._legacyModuleResolve": false,
 
-    // Control if TypeScript definition files should be ignored
-    "tslint.ignoreDefinitionFiles": true,
+    // The eslint options object to provide args to the eslint command.
+    "eslint.options": {},
 
-    // Configure glob patterns of file paths to exclude from linting
-    "tslint.exclude": "./node_modules",
+    // Traces the communication between VSCode and the eslint linter service.
+    "eslint.trace.server": "off",
 
     // Run the linter on save (onSave) or on type (onType)
-    "tslint.run": "onType",
-
-    // A path added to NODE_PATH when resolving the tslint module.
-    "tslint.nodePath": "C:/Program Files/nodejs/node.exe"
+    "eslint.run": "onType",
 }
