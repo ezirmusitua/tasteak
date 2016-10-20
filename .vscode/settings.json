@@ -110,7 +110,7 @@
     "editor.renderControlCharacters": false,
 
     // Controls whether the editor should render indent guides
-    "editor.renderIndentGuides": true,
+    "editor.renderIndentGuides": false,
 
     // Controls whether the editor should render the current line highlight
     "editor.renderLineHighlight": true,
