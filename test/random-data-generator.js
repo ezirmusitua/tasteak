@@ -1,8 +1,13 @@
 const mocha = require('mocha');
 const chai = require('chai');
-const constructTypeStructure = require('./type-constructor').constructTypeStructure;
-const generateRandData = require('./random-data-generator').generateRandData;
-const DataGenerator = require('./index').DataGenerator;
+const constructTypeStructure = require(
+    '../lib/data-generator/index'
+).constructTypeStructure;
+const generateRandData = require(
+    '../lib/data-generator/index'
+).generateRandData;
+const DataGenerator = require('../lib/data-generator/index').DataGenerator;
+
 
 chai.should();
 
@@ -61,8 +66,8 @@ describe('Random Json Generator', () => {
 describe('Data Generator?', () => {
     it('generator random data using class', (done) => {
         const dataGenerator = new DataGenerator(testVal1);
-        const oneRandData = dataGenerator.run();
-        const mulitRandData = dataGenerator.run(3);
+        const oneRandData = dataGenerator.create();
+        const mulitRandData = dataGenerator.create(3);
         mulitRandData.should.have.lengthOf(3);
         console.log('single data', oneRandData);
         console.log('==========');

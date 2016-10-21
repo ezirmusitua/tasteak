@@ -3,7 +3,7 @@ const chai = require('chai');
 
 chai.should();
 
-const randGen = require('./index').randGen;
+const randGen = require('../lib/random-generator/index').randGen;
 
 describe('randNumber', () => {
     it('should return random float value with no fixed...', (done) => {
