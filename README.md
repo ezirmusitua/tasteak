@@ -1,7 +1,7 @@
 # 随机 JSON 数据生成器
 一个利用 mongoose schema 生成随机数据并保存为 JSON 文件的小程序
 
-## 快速入门
+## 基本使用
 将 mongoose 的 Schema 以及希望使用的 plugins 传入构造函数中创建一个用于生成随机数据的对象
 ```
 const RandomDataGenerator = require('random-data-generator').RandomDataGenerator;
