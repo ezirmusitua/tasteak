@@ -1,11 +1,12 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "parserOptions": {
         "ecmaVersion": 6,
-        "sourceType": "module", 
+        "sourceType": "module",
         "ecmaFeatures": {
             "arrowFunctions": true,
             "binaryLiterals": true,
@@ -174,7 +175,7 @@ module.exports = {
         "no-lone-blocks": 2,
         // 禁止在循环中出现 function 声明和表达式
         "no-loop-func":1,
-        
+
         // 禁用魔术数字(3.14什么的用常量代替)
         // "no-magic-numbers":[1,{ "ignore": [0,-1,1] }],
 
@@ -213,7 +214,7 @@ module.exports = {
 
         // 禁用逗号操作符
         // "no-sequences": 2,
-        
+
         // 禁止抛出非异常字面量
         "no-throw-literal": 2,
         // 禁用一成不变的循环条件
@@ -362,7 +363,7 @@ module.exports = {
         // 最好是不要超过 20 行
         "max-statements":[1, 20],
         // 强制每一行中所允许的最大语句数量
-        "max-statements-per-line":[0, {"max": 3}], 
+        "max-statements-per-line":[0, {"max": 3}],
         // 要求构造函数首字母大写（要求调用 new 操作符时有首字母大小的函数，允许调用首字母大写的函数时没有 new 操作符）
         "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
         // 要求调用无参构造函数时有圆括号
