@@ -2,11 +2,15 @@
 一个利用 mongoose schema 生成随机数据并保存为 JSON 文件的小程序
 
 ## 基本使用
-将 mongoose 的 Schema 以及希望使用的 plugins 传入构造函数中创建一个用于生成随机数据的对象
+首先引入内置插件以及 generator
 ```
-const RandomDataGenerator = require('random-data-generator').RandomDataGenerator;
+const prePlugins = require('random-data-generator').plugins;
+const dataGenerator = require('random-data-generator).generator;
+dataGenerator.use(plugins);
+```
+定义一个 mongoose schema
+```
 const mongoose = require('mongoose');
-
 const testSchema = new mongoose.Schema({
     title: String,
     content: String,
@@ -14,31 +18,32 @@ const testSchema = new mongoose.Schema({
     start: Number,
     isOnline: Boolean
 });
-
-const randGenerator = new RandomDataGenerator(testSchema, []);
 ```
-使用 addPlugin 方法添加或修改 plugin, 传入的一个对象, key 为 schema 中需要使用 value 插件的键值
-```
-// add plugin
-randGenerator.addPlugin({'name': 'chinese'});
-```
-使用 create 方法产生随机数据, 接受一个参数, 传入随机数据的个数, 默认为一个
+使用 generate 方法产生随机数据, 接受一个参数, 传入随机数据的个数, 默认为一个
 ```
 // generate a random data
-console.log(randGenerator.create());
+console.log(dataGenerator.generate());
 // generate 3 random data
-console.log(randGenerator.create(3));
+console.log(dataGenerator.generate(3));
 ```
-使用 save 方法产生随机数据并保存, 接受一个参数, 传入随机数据个数, 默认为一个
+使用 save 方法产生随机数据并保存, 接受 2 个参数，第 1 个为存储路径，第 2 个为生成数据数目（默认为 1 个）
 ```
-// generate 3 random data and save to file
-randGenerator.save(3);
+// generate 3 random data and save to data.json
+randGenerator.save('./data.json', 3);
 ```
-使用 updateType 方法更新 schema
+如果要更改或者更新使用的插件直接针对被 use 的 plugins 操作即可
 ```
-// update schema
-randGenerator.updateType(newSchema);
+// add plugin
+prePlugins.push({title: 'chinese'});
+// use another plugins
+const prePlugins = prePlugins.concat([{title: /[a-z]{2,5}/}, {content: 'chinese'}])
 ```
+关于自定义插件的设置
+插件是一个对象
+```
+const plugin = {keyInSchema: valuePattern, params: arrayOfParams}
+```
+其中，keyInSchema 指的是在 schema 中定义的键，valuePattern 指的是如何生成 key 的值，可以使用内置的类型，正则表达式以及一个函数，如果 valuePattern 为 function 则需要传一个 params 数组
 
 ## 安装
 ...
