@@ -34,16 +34,16 @@ randGenerator.save('./data.json', 3);
 如果要更改或者更新使用的插件直接针对被 use 的 plugins 操作即可
 ```
 // add plugin
-prePlugins.push({title: 'chinese'});
+prePlugins[title] = {type: 'chinese'};
 // use another plugins
 const prePlugins = prePlugins.concat([{title: /[a-z]{2,5}/}, {content: 'chinese'}])
 ```
 关于自定义插件的设置
 插件是一个对象
 ```
-const plugin = {keyInSchema: valuePattern, params: arrayOfParams}
+const plugin = {keyInSchema: {type: valuePattern, params: arrayOfParams, count: 1}};
 ```
-其中，keyInSchema 指的是在 schema 中定义的键，valuePattern 指的是如何生成 key 的值，可以使用内置的类型，正则表达式以及一个函数，如果 valuePattern 为 function 则需要传一个 params 数组
+    其中，keyInSchema 指的是在 schema 中定义的键，valuePattern 指的是如何生成 key 的值，可以使用内置的类型，正则表达式以及一个函数，如果 valuePattern 为 function 则需要传一个 params 数组，如果目标类型是数组，则需要传数组数目，没有则默认为 1
 
 ## 安装
 ...
