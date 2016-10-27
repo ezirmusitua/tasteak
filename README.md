@@ -41,9 +41,18 @@ const prePlugins = prePlugins.concat([{title: /[a-z]{2,5}/}, {content: 'chinese'
 关于自定义插件的设置
 插件是一个对象
 ```
-const plugin = {keyInSchema: {type: valuePattern, params: arrayOfParams, count: 1}};
+{
+  KeyName: {
+    Type: …,
+    Params: […],
+    count: …
+}
 ```
-    其中，keyInSchema 指的是在 schema 中定义的键，valuePattern 指的是如何生成 key 的值，可以使用内置的类型，正则表达式以及一个函数，如果 valuePattern 为 function 则需要传一个 params 数组，如果目标类型是数组，则需要传数组数目，没有则默认为 1
+其中:
+Keyname: 用来匹配 schema 中的字段名称，第一阶段直接全匹配，之后可以考虑正则匹配
+Type: 字段用于指定字段的类型，这里可以有三种类型的值，一种是字符串，可以表示内置插件或者是常量，一种是正则表达式，可以表示期望生成字符串的模式，还有一种是普通常量，最后一种是函数，在内部实现中，当生成器使用插件时，会将所有的自定义插件转化为函数，然后在生成时 直接根据字段名调用生成即可
+Params 指的是生成数据需要的参数，必须保证正确的顺序(或许以后可以动态参数，目前可以做到对象无序析构传参)
+Count 字段用来针对数组类型字段，表面需要生成数组元素个数，以后可以设置为随机个数
 
 ## 安装
 ...
