@@ -66,11 +66,9 @@ npm test
 MIT
 
 ## TODOS
- - [ ] 简化项目结构，去除不必要语言特性的使用
- - [x] 将 randomFloat 的获取从 randomNumber 中抽离
- - [ ] 为 randomNumber 增加更多的 单元测试
- - [ ] 重写 randomString, 组织成为一个 代理 而不是方法
- - [ ] 重新设计 插件 的使用
- - [ ] 移除 randomChinese 方法, 转换成为一个 插件
- - [ ] 内联 chinese.json 文件
- - [ ] 研究其他类似库的使用方法
+ - [x] 简化项目结构，去除不必要语言特性的使用
+ - [x] 重新设计 插件 的使用
+ - [x] 重新组织文件格式
+ - [ ] 重新编写单元测试
+ - [ ] 修改 generateRandomString, 如果输入字符串，自动转化成正则表达式
+
