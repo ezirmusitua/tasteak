@@ -36,7 +36,7 @@ const testVal2 = {
     age: 'number'
 };
 
-describe('Type constructor', () => {
+describe('Type Constructor', () => {
     it('should return type structure ', (done) => {
         const tmp = constructType(testVal1);
         console.log(tmp);
