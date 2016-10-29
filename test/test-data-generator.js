@@ -1,14 +1,19 @@
 const mocha = require('mocha');
 const chai = require('chai');
-const prePlugins = require('../lib/plugins').plugins;
+const prePlugin = require('../lib/plugins').plugins;
+const DataGenerator = require('../lib/data-generator').DataGenerator;
+
 function dataGenerator (schema) {
     this.usePlugins = function (plugins) {
+        return null;
+    };
+    this.generateRandomData = function (count) {
         return [];
     };
-    return {};
+    return this;
 }
 
-chai.use();
+chai.should();
 
 const testSchemaType = {
     sex: 'string',
@@ -26,26 +31,48 @@ const testSchemaType = {
     age: 'number'
 };
 
+const tmp = DataGenerator(testSchemaType);
 const schemaKeys = ['sex', 'name', 'chinese', 'english', 'age', 'interest'];
 
 describe('Data Generator?', () => {
+    describe('Use Plugin', () => {
+        beforeEach((done) => {
+            tmp.use({});
+            done();
+        });
 
-    beforeEach((done) => {
-        dataGenerator.usePlugins(prePlugins);
-        done();
+        it('should convert to pre plugin function in Plugin', (done) => {
+            tmp.use({name: {type: 'chinese'}});
+            tmp.pluginDict.name.type.should.equal(prePlugin.chinese.type);
+            done();
+        });
+
+        it('should convert to generate constant function', (done) => {
+            tmp.use({name: {type: 'abc'}, age: {type: 20}, isMale: {type: true}});
+            tmp.pluginDict.name.type().should.equal('abc');
+            tmp.pluginDict.age.type().should.equal(20);
+            tmp.pluginDict.isMale.type().should.equal(true);
+            done();
+        });
+
+        it('should convert regex to generate random regex function', (done) => {
+            tmp.use({name: {type: /ab[cde]/}});
+            ['abc', 'abd', 'abe'].indexOf(tmp.pluginDict.name.type()).should.above(-1);
+            done();
+        });
     });
 
-    it('should generate random data for schema type', (done) => {
-        const generator = dataGenerator(testSchemaType);
-        const tmp = generator.generateRandomData();
-        const tmp1 = generator.generateRandomData(3);
 
-        console.log(tmp);
-        tmp.should.have.any.keys(...schemaKeys);
-        tmp.should.not.be['instanceof'](Array);
-        console.log(tmp1);
-        tmp1.should.have.lengthOf(3);
-        done();
+    describe('Generate?', () => {
+
+        it('should generate random data', (done) => {
+            const result = null;
+
+            result.should.should.equal(true);
+            done();
+        });
+
     });
+
 });
 
