@@ -74,6 +74,12 @@ describe('Data Generator?', () => {
             console.log('result: ', result);
             done();
         });
+        it('should using given default to generate data', (done) => {
+            tmp.use({interest: {type: () => ['eat', 'sleep']}});
+            const result = tmp.generate();
+            console.log('result: ', result);
+            done();
+        });
     });
 });
 
