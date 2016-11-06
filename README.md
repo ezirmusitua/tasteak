@@ -1,14 +1,8 @@
 # 随机 JSON 数据生成器
-一个利用 mongoose schema 生成随机数据并保存为 JSON 文件的小程序
+一个能够利用 mongoose schema 生成随机数据的小程序
 
 ## 基本使用
-首先引入内置插件以及 generator
-```
-const prePlugins = require('random-data-generator').plugins;
-const dataGenerator = require('random-data-generator).generator;
-dataGenerator.use(plugins);
-```
-定义一个 mongoose schema
+使用内置的基本类型生成随机数据, generate 方法接受一个参数，用于指定需要生成的数量
 ```
 const mongoose = require('mongoose');
 const testSchema = new mongoose.Schema({
@@ -18,33 +12,33 @@ const testSchema = new mongoose.Schema({
     start: Number,
     isOnline: Boolean
 });
-```
-使用 generate 方法产生随机数据, 接受一个参数, 传入随机数据的个数, 默认为一个
-```
-// generate a random data
-console.log(dataGenerator.generate());
-// generate 3 random data
-console.log(dataGenerator.generate(3));
+const prePlugins = require('random-data-generator').plugins;
+const dataGenerator = require('random-data-generator).Generator;
+const generator = Generator.use(testSchema);
+generator.use(prePlugins);
+// 1
+generator.generate();
+// 3
+generator.generate(3);
 ```
 使用 save 方法产生随机数据并保存, 接受 2 个参数，第 1 个为存储路径，第 2 个为生成数据数目（默认为 1 个）
 ```
 // generate 3 random data and save to data.json
-randGenerator.save('./data.json', 3);
+generator.save('./data.json', 3);
 ```
-如果要更改或者更新使用的插件直接针对被 use 的 plugins 操作即可
+更改或者更新使用的插件
 ```
 // add plugin
 prePlugins[title] = {type: 'chinese'};
 // use another plugins
 const prePlugins = prePlugins.concat([{title: /[a-z]{2,5}/}, {content: 'chinese'}])
 ```
-关于自定义插件的设置
-插件是一个对象
+关于自定义插件
 ```
 {
   KeyName: {
-    Type: …,
-    Params: […],
+    type: …,
+    params: […],
     count: …
 }
 ```
@@ -55,7 +49,7 @@ Params 指的是生成数据需要的参数，必须保证正确的顺序(或许
 Count 字段用来针对数组类型字段，表面需要生成数组元素个数，以后可以设置为随机个数
 
 ## 安装
-...
+npm install
 
 ## 运行测试
 ```

@@ -1,7 +1,7 @@
 const mocha = require('mocha');
 const chai = require('chai');
 const prePlugin = require('../lib/plugins').plugins;
-const DataGenerator = require('../lib/data-generator').DataGenerator;
+const DataGenerator = require('../lib/data-generator').Generator;
 
 chai.should();
 
