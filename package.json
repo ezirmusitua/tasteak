@@ -1,19 +1,19 @@
 {
-  "name": "mongo-json-generator",
-  "version": "0.1.2",
-  "description": "generate random json file accord to mongoose schema",
+  "name": "tasteak",
+  "version": "1.0.0",
+  "description": "generate random json file using given schema and plugin setting",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive"
   },
   "keywords": [
-    "mongodb",
-    "json"
+    "mongoose",
+    "random",
+    "test"
   ],
   "author": "jferroal@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.16.4",
     "randexp": "^0.4.3"
   },
   "devDependencies": {
