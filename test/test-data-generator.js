@@ -3,16 +3,6 @@ const chai = require('chai');
 const prePlugin = require('../lib/plugins').plugins;
 const DataGenerator = require('../lib/data-generator').DataGenerator;
 
-function dataGenerator (schema) {
-    this.usePlugins = function (plugins) {
-        return null;
-    };
-    this.generateRandomData = function (count) {
-        return [];
-    };
-    return this;
-}
-
 chai.should();
 
 const testSchemaType = {
@@ -32,7 +22,6 @@ const testSchemaType = {
 };
 
 const tmp = DataGenerator(testSchemaType);
-const schemaKeys = ['sex', 'name', 'chinese', 'english', 'age', 'interest'];
 
 describe('Data Generator?', () => {
     describe('Use Plugin', () => {
@@ -60,18 +49,24 @@ describe('Data Generator?', () => {
             ['abc', 'abd', 'abe'].indexOf(tmp.pluginDict.name.type()).should.above(-1);
             done();
         });
+
+        it('should convert function with params if given params', (done) => {
+            tmp.use({age: {type: (count) => count, params: [1]}});
+            tmp.pluginDict.age.type().should.equal(1);
+            done();
+        });
     });
 
-
-    describe('Generate?', () => {
-
+    describe('Generate Random For Given Schema?', () => {
+        beforeEach((done) => {
+            tmp.use(prePlugin);
+            done();
+        });
         it('should generate random data', (done) => {
             const result = null;
-
             result.should.should.equal(true);
             done();
         });
-
     });
 
 });
